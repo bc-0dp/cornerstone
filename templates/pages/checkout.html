@@ -1,12 +1,12 @@
 {{#partial "head"}}
 
+<script type="text/javascript">
+    window.language = {{ {langJson 'optimized_checkout'; } }};
+</script>
+
 {{{ checkout.checkout_head }}}
 {{{ stylesheet '/assets/css/optimized-checkout.css' }}}
 {{ getFontsCollection }}
-
-<script type="text/javascript">
-    window.language = {{{langJson 'optimized_checkout'}}};
-</script>
 
 {{{head.scripts}}}
 
