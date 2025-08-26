@@ -1,0 +1,192 @@
+{{#if display_name '==' 'transfer_installer'}}
+<div class="form-field" data-product-attribute="input-checkbox">
+    <input type="hidden" name="attribute[{{id}}]" value="{{noValue}}" />
+    <div class="form-option-wrapper">
+        <input class="form-checkbox" type="checkbox" name="attribute[{{id}}]"
+        id="attribute-check-{{id}}" value="{{value}}" {{#if checked}} checked
+        data-default {{/if}} {{#if required}}required{{/if}} >
+
+        <label class="form-label {{class}}" for="attribute-check-{{id}}"
+            >{{label}}</label
+        >
+    </div>
+
+    <!-- Accordion Content -->
+    <div id="accordion-content-{{id}}" class="accordion-content">
+        <div class="accordion-inner">
+            <p>Please note that this service is offered free of charge</p>
+            <div class="form-row form-row--half">
+                <div class="form-field">
+                    <label class="form-label" for="transfer_installer"
+                        >New Installer / Account ID</label
+                    >
+                    <input
+                        class="form-input"
+                        type="text"
+                        id="transfer_installer"
+                        name="transfer_installer"
+                        value=""
+                    />
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="transfer_installer_again"
+                        >Verify New Installer / Account ID</label
+                    >
+                    <input
+                        class="form-input"
+                        type="text"
+                        id="transfer_installer_again"
+                        name="transfer_installer_again"
+                        value=""
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{#if display_name '==' 'transfer_ownership'}}
+<div class="form-field" data-product-attribute="input-checkbox">
+    <input type="hidden" name="attribute[{{id}}]" value="{{noValue}}" />
+    <div class="form-option-wrapper">
+        <input class="form-checkbox" type="checkbox" name="attribute[{{id}}]"
+        id="attribute-check-{{id}}" value="{{value}}" {{#if checked}} checked
+        data-default {{/if}} {{#if required}}required{{/if}} >
+
+        <label class="form-label {{class}}" for="attribute-check-{{id}}"
+            >{{label}}</label
+        >
+    </div>
+
+    <!-- Accordion Content -->
+    <div id="accordion-content-{{id}}" class="accordion-content">
+        <div class="accordion-inner">
+            <div class="form-row form-row--half">
+                <div class="form-field">
+                    <label class="form-label" for="transfer_ownership-previous_owner_name"
+                        >Name of Previous Owner</label
+                    >
+                    <input
+                        class="form-input"
+                        type="text"
+                        id="transfer_ownership-previous_owner_name"
+                        name="transfer_ownership-previous_owner_name"
+                        value=""
+                    />
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="transfer_ownership-new_site_name"
+                        >New Site Name (Optional)</label
+                    >
+                    <input
+                        class="form-input"
+                        type="text"
+                        id="transfer_ownership-new_site_name"
+                        name="transfer_ownership-new_site_name"
+                        value=""
+                    />
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="transfer_ownership-new_owner_first_name"
+                        >New Owner First Name</label
+                    >
+                    <input
+                        class="form-input"
+                        type="text"
+                        id="transfer_ownership-new_owner_first_name"
+                        name="transfer_ownership-new_owner_first_name"
+                        value=""
+                    />
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="transfer_ownership-new_owner_last_name"
+                        >New Owner Last Name</label
+                    >
+                    <input
+                        class="form-input"
+                        type="text"
+                        id="transfer_ownership-new_owner_last_name"
+                        name="transfer_ownership-new_owner_last_name"
+                        value=""
+                    />
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="transfer_ownership-new_owner_email"
+                        >New Owner Email</label
+                    >
+                    <input
+                        class="form-input"
+                        type="email"
+                        id="transfer_ownership-new_owner_email"
+                        name="transfer_ownership-new_owner_email"
+                        value=""
+                    />
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="transfer_ownership-new_owner_email_again"
+                        >Verify New Owner Email</label
+                    >
+                    <input
+                        class="form-input"
+                        type="email"
+                        id="transfer_ownership-new_owner_email_again"
+                        name="transfer_ownership-new_owner_email_again"
+                        value=""
+                    />
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="transfer_ownership-new_owner_phone"
+                        >New Owner Phone</label
+                    >
+                    <input
+                        class="form-input"
+                        type="tel"
+                        id="transfer_ownership-new_owner_phone"
+                        name="transfer_ownership-new_owner_phone"
+                        value=""
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{#if display_name '==' 'add_users'}}
+<div class="form-field" data-product-attribute="input-checkbox">
+    <input type="hidden" name="attribute[{{id}}]" value="{{noValue}}" />
+    <div class="form-option-wrapper">
+        <input class="form-checkbox" type="checkbox" name="attribute[{{id}}]"
+        id="attribute-check-{{id}}" value="{{value}}" {{#if checked}} checked
+        data-default {{/if}} {{#if required}}required{{/if}} >
+
+        <label class="form-label {{class}}" for="attribute-check-{{id}}"
+            >{{label}}</label
+        >
+    </div>
+
+    <!-- Accordion Content -->
+    <div id="accordion-content-{{id}}" class="accordion-content">
+        <div class="accordion-inner">
+            <p>
+                This is the accordion content that appears when the checkbox is
+                checked.
+            </p>
+            <p>You can add any content here - forms, text, images, etc.</p>
+            <ul>
+                <li>Example list item 1</li>
+                <li>Example list item 2</li>
+                <li>Example list item 3</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{{/if}}

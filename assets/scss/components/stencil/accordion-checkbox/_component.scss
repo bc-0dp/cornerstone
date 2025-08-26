@@ -1,0 +1,31 @@
+// =============================================================================
+// ACCORDION CHECKBOX COMPONENT
+// =============================================================================
+
+.accordion-content {
+    margin-top: 10px;
+    display: none;
+}
+
+.accordion-inner {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.accordion-inner p,
+.accordion-inner ul,
+.accordion-inner li {
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.accordion-inner ul {
+    padding-left: 20px;
+}
+
+.accordion-inner li:last-child {
+    margin-bottom: 0;
+}

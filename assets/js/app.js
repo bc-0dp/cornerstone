@@ -1,6 +1,24 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 
-import Global from './theme/global';
+
+import Global from "./theme/global";
+// import React from "react";
+// import { createRoot } from "react-dom/client";
+// import { ThemeProvider, createTheme } from "@mui/material/styles";
+// import CssBaseline from "@mui/material/CssBaseline";
+// import CouponDrawer from "./components/CouponDrawer";
+
+// Create a theme instance for MUI
+// const theme = createTheme({
+//     palette: {
+//         primary: {
+//             main: "#555555", // Customize to match your brand
+//         },
+//         secondary: {
+//             main: "#f44336", // Customize to match your brand
+//         },
+//     },
+// });
 
 const getAccount = () => import('./theme/account');
 const getLogin = () => import('./theme/auth');
@@ -52,7 +70,10 @@ const pageClasses = {
     wishlists: () => import('./theme/wishlist'),
 };
 
-const customClasses = {};
+const customClasses = {
+    'pages/custom/product/site-transfer': () => import('./theme/site-transfer'),
+};
+
 
 /**
  * This function gets added to the global window and then called
@@ -63,6 +84,9 @@ const customClasses = {};
  */
 window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {
     const context = JSON.parse(contextJSON || '{}');
+
+    console.log('Bootstrap called with pageType:', pageType);
+    console.log('Template context:', context.template);
 
     return {
         load() {
@@ -77,18 +101,23 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
                 // Find the appropriate page loader based on pageType
                 const pageClassImporter = pageClasses[pageType];
                 if (typeof pageClassImporter === 'function') {
+                    console.log('Loading page class for:', pageType);
                     importPromises.push(pageClassImporter());
                 }
 
                 // See if there is a page class default for a custom template
                 const customTemplateImporter = customClasses[context.template];
                 if (typeof customTemplateImporter === 'function') {
+                    console.log('Loading custom template class for:', context.template);
                     importPromises.push(customTemplateImporter());
+                } else {
+                    console.log('No custom template class found for:', context.template);
                 }
 
                 // Wait for imports to resolve, then call load() on them
                 Promise.all(importPromises).then(imports => {
                     imports.forEach(imported => {
+                        console.log('Calling load on imported class');
                         imported.default.load(context);
                     });
                 });
@@ -96,3 +125,18 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
         },
     };
 };
+
+// const couponContainer = document.querySelector("#coupondrawer");
+
+// if (couponContainer) {
+//     const root = createRoot(couponContainer);
+//     root.render(
+//         <ThemeProvider theme={theme}>
+//             <CssBaseline />
+//             <CouponDrawer />
+//         </ThemeProvider>
+//     );
+// }
+
+
+// eslint-disable-next-line no-new

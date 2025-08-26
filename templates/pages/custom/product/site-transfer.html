@@ -1,0 +1,73 @@
+---
+
+---
+{{#partial "page"}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div>
+        {{#if customer}}
+
+            <div class="productView"
+                data-event-type="product"
+                data-entity-id="{{product.id}}"
+                data-name="{{product.title}}"
+                data-product-category="
+                {{#each product.category}}
+                    {{#if @last}}{{this}}{{else}}{{this}}, {{/if}}
+                {{/each}}"
+                data-product-brand="{{product.brand.name}}"
+                data-product-price="
+                {{#or customer (unless settings.hide_price_from_guests)}}
+                    {{#if product.price.with_tax}}
+                        {{product.price.with_tax.value}}
+                    {{else}}
+                        {{product.price.without_tax.value}}
+                    {{/if}}
+                {{else}}
+                    {{lang 'common.login_for_pricing'}}
+                {{/or}}"
+                data-product-variant="single-product-option">        
+                <section class="product-data">
+                    <div class="productView-product">
+                        <h1 class="productView-title">{{product.title}}</h1>
+
+                        {{> components/site-transfer/price price=product.price}}
+
+                        <div class="productView-description" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
+                            {{{product.description}}}
+                        </div>
+                    </div>
+
+                    <div>
+                        <section class="product-options">
+                            <div class="productView-options">
+                                <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                                    data-cart-item-add>
+                                    <input type="hidden" name="action" value="add">
+                                    <input type="hidden" name="product_id" value="{{product.id}}"/>
+                                    <div data-product-option-change style="display:none;">
+                                        {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
+                                        {{#each product.options}}
+                                            {{{dynamicComponent 'components/site-transfer/options'}}}
+                                        {{/each}}
+                                    </div>
+                                    {{> components/site-transfer/add-to-cart}}
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+            {{{region name="product_below_content"}}}
+
+        {{else}}
+            <p>Please log in or create an account to commence a site transfer.</p>
+        {{/if}}
+    </div>
+
+    {{> components/products/schema}}
+{{/partial}}
+{{> layout/base}}
