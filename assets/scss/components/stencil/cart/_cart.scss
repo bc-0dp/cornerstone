@@ -861,6 +861,8 @@ $card-preview-zoom-bottom-offset:       6rem;
         @include breakpoint("small") {
             display: inline-block;
             float: right;
+            min-width: 16rem;
+            text-align: center;
         }
     }
 
@@ -869,6 +871,16 @@ $card-preview-zoom-bottom-offset:       6rem;
         display: block;
         float: right;
         padding-top: spacing("quarter");
+    }
+}
+
+.cart-quote-divider {
+    clear: both;
+    margin: spacing("single") 0 spacing("half");
+    text-align: center;
+
+    @include breakpoint("small") {
+        text-align: right;
     }
 }
 
@@ -1004,6 +1016,21 @@ $card-preview-zoom-bottom-offset:       6rem;
 
 .previewCartAction-viewCart {
     padding-left: spacing("quarter");
+}
+
+.previewCartAction-quote {
+    @include grid-column(12);
+    padding-top: spacing("quarter");
+
+    .cart-quote-divider {
+        margin-top: spacing("half");
+        text-align: center;
+    }
+
+    .button {
+        display: block;
+        margin-bottom: 0;
+    }
 }
 
 .previewCart-emptyBody {

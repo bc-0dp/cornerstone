@@ -63,6 +63,10 @@
             "you_saved": "You saved",
             "in_total": "in total!"
         },
+        "quote": {
+            "button": "Request a quote",
+            "or_use": "-- or use --"
+        },
         "preview": {
             "checkout_now": "Check out now",
             "checkout_multiple": "or check out with multiple addresses",

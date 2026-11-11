@@ -58,6 +58,12 @@ cart: true
                     </div>
                 {{/if}}
 
+                <p class="cart-quote-divider cart-content-padding-right">{{lang 'cart.quote.or_use'}}</p>
+
+                <div class="cart-actions cart-content-padding-right">
+                    {{> components/cart/quote-button}}
+                </div>
+
                 {{#if cart.additional_checkout_buttons}}
                     <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
                         {{> components/cart/additional-checkout-buttons}}

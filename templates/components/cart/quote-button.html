@@ -1,0 +1,8 @@
+{{!-- Quote app host is configured once via the `quote_app_url` theme setting (config.json) --}}
+<a
+    href="{{theme_settings.quote_app_url}}/quotes/new?cartId={{cart_id}}"
+    class="button button--quote {{class}}"
+    data-quote-action
+>
+    {{lang 'cart.quote.button'}}
+</a>

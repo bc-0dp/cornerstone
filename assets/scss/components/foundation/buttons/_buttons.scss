@@ -15,6 +15,10 @@
     }
 }
 
+.button--quote {
+    @include buttonVariant("quote");
+}
+
 .button[disabled] {
     cursor: not-allowed;
 }

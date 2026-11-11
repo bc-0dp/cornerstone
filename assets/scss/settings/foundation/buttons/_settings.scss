@@ -39,6 +39,16 @@ $buttonStyle-primary-borderColor:            stencilColor("button--primary-backg
 $buttonStyle-primary-borderColorHover:       stencilColor("button--primary-backgroundColorHover");
 $buttonStyle-primary-borderColorActive:      stencilColor("button--primary-backgroundColorActive");
 
+$buttonStyle-quote-color:                    stencilColor("button--quote-color");
+$buttonStyle-quote-colorHover:               stencilColor("button--quote-color");
+$buttonStyle-quote-colorActive:              stencilColor("button--quote-color");
+$buttonStyle-quote-backgroundColor:          stencilColor("button--quote-backgroundColor");
+$buttonStyle-quote-backgroundColorHover:     stencilColor("button--quote-backgroundColorHover");
+$buttonStyle-quote-backgroundColorActive:    stencilColor("button--quote-backgroundColorActive");
+$buttonStyle-quote-borderColor:              stencilColor("button--quote-backgroundColor");
+$buttonStyle-quote-borderColorHover:         stencilColor("button--quote-backgroundColorHover");
+$buttonStyle-quote-borderColorActive:        stencilColor("button--quote-backgroundColorActive");
+
 $buttonStyle-disabled-color:                 stencilColor("button--disabled-color");
 $buttonStyle-disabled-colorHover:            null;
 $buttonStyle-disabled-colorActive:           null;
@@ -167,6 +177,18 @@ $buttonStyleMap: (
         borderColor:                    $buttonStyle-primary-borderColor,
         borderColorHover:               $buttonStyle-primary-borderColorHover,
         borderColorActive:              $buttonStyle-primary-borderColorActive
+    ),
+
+    quote: (
+        color:                          $buttonStyle-quote-color,
+        colorHover:                     $buttonStyle-quote-colorHover,
+        colorActive:                    $buttonStyle-quote-colorActive,
+        backgroundColor:                $buttonStyle-quote-backgroundColor,
+        backgroundColorHover:           $buttonStyle-quote-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-quote-backgroundColorActive,
+        borderColor:                    $buttonStyle-quote-borderColor,
+        borderColorHover:               $buttonStyle-quote-borderColorHover,
+        borderColorActive:              $buttonStyle-quote-borderColorActive
     ),
 
     disabled: (

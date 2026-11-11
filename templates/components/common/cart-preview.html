@@ -66,6 +66,11 @@
                     </a>
                 </div>
 
+                <div class="previewCartAction-quote">
+                    <p class="cart-quote-divider">{{lang 'cart.quote.or_use'}}</p>
+                    {{> components/cart/quote-button class="button--small"}}
+                </div>
+
                 {{#if cart.show_multiple_address_shipping}}
                     <div class="previewCartAction-checkoutMultiple">
                         <a href="{{urls.checkout.multiple_address}}">
