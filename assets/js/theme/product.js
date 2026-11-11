@@ -6,6 +6,7 @@ import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
+import SubscriptionOffers from './product/subscription-offers';
 import { classifyForm } from './common/utils/form-utils';
 import modalFactory from './global/modal';
 
@@ -34,6 +35,7 @@ export default class Product extends PageManager {
         this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
         this.productDetails.setProductVariant();
 
+        new SubscriptionOffers(this.context, document.querySelector('.productView')).init();
         videoGallery();
 
         this.bulkPricingHandler();

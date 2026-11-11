@@ -8,7 +8,53 @@ product:
         limit: {{theme_settings.productpage_related_products_count}}
     similar_by_views:
         limit: {{theme_settings.productpage_similar_by_views_count}}
+gql: >
+    query productById($productId: Int!) {
+      site {
+        product(entityId: $productId) {
+          metafields(namespace: "subscriptions", keys: ["offers"]) {
+            edges {
+              node {
+                key
+                value
+              }
+            }
+          }
+          variants(first: 25) {
+            edges {
+              node {
+                sku
+                prices {
+                  price {
+                    value
+                    formatted
+                  }
+                }
+                options {
+                  edges {
+                    node {
+                      entityId
+                      values {
+                        edges {
+                          node {
+                            entityId
+                            label
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
 ---
+
+{{inject 'subscriptionOffers' gql.data.site.product.metafields.edges.[0].node.value}}
+{{inject 'subscriptionVariants' gql.data.site.product.variants}}
 {{inject 'productId' product.id}}
 
 {{#partial "page"}}

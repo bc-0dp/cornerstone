@@ -1,0 +1,109 @@
+// =============================================================================
+// SUBSCRIPTION OFFERS
+// =============================================================================
+
+.subscriptionOffers-source {
+    display: none;
+}
+
+.subscriptionOffers {
+    margin-bottom: spacing("base");
+}
+
+.subscriptionOffers-heading {
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+    letter-spacing: 0.04em;
+    margin: 0 0 spacing("third");
+    text-transform: uppercase;
+}
+
+.subscriptionOffers-card {
+    border: 1px solid stencilColor("color-greyLighter");
+    border-radius: 8px;
+    margin-bottom: spacing("third");
+    padding: spacing("half");
+
+    &.is-selected {
+        border-color: stencilColor("color-primary");
+        border-width: 2px;
+        padding: calc(#{spacing("half")} - 1px);
+    }
+}
+
+.subscriptionOffers-header {
+    align-items: flex-start;
+    cursor: pointer;
+    display: flex;
+    gap: spacing("third");
+    margin: 0;
+}
+
+.subscriptionOffers-radio {
+    margin: 4px 0 0;
+}
+
+.subscriptionOffers-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.subscriptionOffers-title {
+    align-items: center;
+    display: flex;
+    font-weight: fontWeight("bold");
+    gap: spacing("third");
+}
+
+.subscriptionOffers-badge {
+    background: stencilColor("color-greyLightest");
+    border-radius: 3px;
+    color: stencilColor("color-primary");
+    font-size: fontSize("smallest");
+    padding: 2px 6px;
+}
+
+.subscriptionOffers-summary {
+    color: stencilColor("color-greyDark");
+    font-size: fontSize("smaller");
+}
+
+.subscriptionOffers-price {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.subscriptionOffers-was {
+    color: stencilColor("color-greyLight");
+    margin-right: spacing("quarter");
+}
+
+.subscriptionOffers-now {
+    font-size: fontSize("larger");
+}
+
+.subscriptionOffers-body {
+    padding-left: spacing("double");
+}
+
+.subscriptionOffers-card:not(.is-selected) .subscriptionOffers-body {
+    display: none;
+}
+
+.subscriptionOffers-frequency {
+    margin-top: spacing("third");
+}
+
+.subscriptionOffers-frequencyLabel {
+    display: block;
+    font-size: fontSize("smaller");
+    margin-bottom: spacing("quarter");
+}
+
+.subscriptionOffers-footnote {
+    color: stencilColor("color-greyDark");
+    font-size: fontSize("smallest");
+    margin: spacing("third") 0 0;
+}
