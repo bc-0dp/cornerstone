@@ -253,7 +253,7 @@
                 <p>{{product.release_date}}</p>
             {{/if}}
             <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
-                  data-cart-item-add>
+                  data-cart-item-add autocomplete="off">
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id" value="{{product.id}}"/>
                 {{#if product.cart_order_source}}
@@ -285,9 +285,9 @@
                 </div>
                 {{> components/products/add-to-cart with_wallet_buttons=true}}
             </form>
-            {{#if settings.show_wishlist}}
+            {{!-- {{#if settings.show_wishlist}}
                 {{> components/common/wishlist-dropdown}}
-            {{/if}}
+            {{/if}} --}}
         </div>
         {{> components/common/share url=product.url}}
     </section>

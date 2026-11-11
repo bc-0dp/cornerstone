@@ -107,3 +107,147 @@
     font-size: fontSize("smallest");
     margin: spacing("third") 0 0;
 }
+
+// Terms panel (DMCCA) shown with the express wallet buttons
+.subscriptionTerms {
+    clear: both;
+    background: stencilColor("color-greyLightest");
+    border: 1px solid stencilColor("color-greyLighter");
+    border-radius: 8px;
+    margin-bottom: spacing("half");
+    padding: spacing("half");
+    text-align: left;
+}
+
+.subscriptionTerms-header {
+    border-bottom: 1px solid stencilColor("color-greyLighter");
+    display: flex;
+    gap: spacing("third");
+    margin-bottom: spacing("third");
+    padding-bottom: spacing("third");
+}
+
+.subscriptionTerms-image {
+    flex: none;
+    height: 80px;
+    object-fit: cover;
+    width: 60px;
+}
+
+.subscriptionTerms-title {
+    font-size: fontSize("small");
+    margin: 0;
+}
+
+.subscriptionTerms-headline {
+    font-weight: fontWeight("bold");
+    margin: 0;
+}
+
+.subscriptionTerms-equivalent {
+    color: stencilColor("color-greyDark");
+    font-size: fontSize("smaller");
+    font-style: italic;
+    margin: 0;
+}
+
+.subscriptionTerms-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.subscriptionTerms-item {
+    display: flex;
+    gap: spacing("third");
+    margin-bottom: spacing("third");
+
+    svg {
+        fill: currentColor;
+        flex: none;
+        height: 24px;
+        width: 24px;
+    }
+}
+
+.subscriptionTerms-itemTitle {
+    font-weight: fontWeight("bold");
+    margin: 0;
+}
+
+.subscriptionTerms-itemBody {
+    color: stencilColor("color-greyDark");
+    font-size: fontSize("smaller");
+    margin: 0;
+}
+
+.subscriptionTerms-link {
+    font-size: fontSize("smaller");
+}
+
+.subscriptionBuyNow {
+    clear: both;
+    margin-top: spacing("half");
+}
+
+// Stack Add to Cart over Buy Now at full width, overriding the half-width floated default.
+.productView-options .add-to-cart-buttons.subscriptionBuyNow-buttons {
+    display: block;
+    float: none;
+    margin-bottom: spacing("third");
+    margin-top: spacing("single");
+    padding: 0;
+    width: 100%;
+
+    #form-action-addToCart {
+        background: transparent;
+        border: 1px solid stencilColor("color-primary");
+        border-radius: 24px;
+        color: stencilColor("color-primary");
+
+        &:hover,
+        &:focus {
+            background: stencilColor("color-primary");
+            color: #fff;
+        }
+    }
+}
+
+.subscriptionBuyNow-toggle {
+    background: #111;
+    border: 1px solid #111;
+    border-radius: 24px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    list-style: none;
+    text-align: center;
+    text-transform: uppercase;
+
+    &:hover,
+    &:focus {
+        background: #333;
+        border-color: #333;
+        color: #fff;
+    }
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+}
+
+.subscriptionBuyNow-content {
+    margin-top: spacing("half");
+}
+
+.subscriptionBuyNow-agreement {
+    font-size: fontSize("smaller");
+    margin: 0 0 spacing("half");
+}
+
+.subscriptionBuyNow-secure {
+    color: stencilColor("color-greyDark");
+    font-size: fontSize("smallest");
+    margin: spacing("quarter") 0 0;
+    text-align: center;
+}

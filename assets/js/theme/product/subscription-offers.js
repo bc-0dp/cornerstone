@@ -3,6 +3,9 @@
  The native radios stay in the DOM as the source of truth so product-details.js keeps
  handling price, SKU and stock updates.
  */
+import { buildTerms } from './subscription-terms';
+import { createTermsPanel, renderTermsPanel } from './subscription-terms-panel';
+
 const SUBSCRIBE_GROUP = 'subscribe';
 // The one-time purchase covers a 12-month subscription.
 const ONE_TIME_MONTHS = 12;
@@ -63,7 +66,75 @@ export default class SubscriptionOffers {
         radioGroup.classList.add('subscriptionOffers-source');
         radioGroup.parentNode.insertBefore(root, radioGroup);
 
+        this.initTermsPanel();
         this.syncFromRadios();
+
+        // Firefox restores radio state after DOMContentLoaded without firing change events.
+        window.addEventListener('load', () => this.syncFromRadios());
+        window.addEventListener('pageshow', () => this.syncFromRadios());
+        radioGroup.addEventListener('change', () => this.syncFromRadios());
+    }
+
+    // Moves the (third-party rendered) wallet buttons under the terms card so the commitment
+    // is shown directly above the express purchase buttons.
+    initTermsPanel() {
+        const wallet = this.scope.querySelector('[data-add-to-cart-wallet-buttons]');
+        const buttons = wallet && wallet.closest('.add-to-cart-buttons');
+
+        if (!buttons) return;
+
+        const { termsUrl, conditionsUrl } = this.config;
+
+        this.buyNow = el('details', 'subscriptionBuyNow');
+        const toggle = el('summary', 'button button--primary subscriptionBuyNow-toggle', 'Buy Now');
+        const content = el('div', 'subscriptionBuyNow-content');
+        this.termsPanel = createTermsPanel();
+        this.agreement = el('p', 'subscriptionBuyNow-agreement');
+        this.agreement.append('By placing your order you agree to our ');
+        this.agreement.appendChild(this.link('Terms & Conditions.', conditionsUrl));
+        this.agreement.append(' Please see our ');
+        this.agreement.appendChild(this.link('Full subscription information', termsUrl));
+        this.agreement.append(' for your subscription rights and information.');
+
+        content.append(this.termsPanel, this.agreement, wallet, el('p', 'subscriptionBuyNow-secure', 'Secure payment | Your personal details are protected'));
+        this.buyNow.append(toggle, content);
+        buttons.classList.add('subscriptionBuyNow-buttons');
+        buttons.insertAdjacentElement('afterend', this.buyNow);
+
+        // product-details.js hides the wallet when the product can't be purchased.
+        const syncVisibility = () => {
+            this.buyNow.hidden = wallet.style.display === 'none';
+        };
+
+        new MutationObserver(syncVisibility).observe(wallet, { attributes: true, attributeFilter: ['style'] });
+        syncVisibility();
+    }
+
+    link(text, href) {
+        if (!href) return document.createTextNode(text);
+
+        const anchor = el('a', '', text);
+
+        anchor.href = href;
+
+        return anchor;
+    }
+
+    updateTermsPanel(value) {
+        if (!this.termsPanel) return;
+
+        const offer = this.offers.find(o => o.radio.value === value);
+        const subscribed = !!offer && offer.group === SUBSCRIBE_GROUP;
+        const image = this.scope.querySelector('[data-image-gallery-main] img');
+        const title = this.scope.querySelector('.productView-title');
+
+        renderTermsPanel(this.termsPanel, subscribed ? this.termsFor(offer) : null, {
+            title: title && title.textContent,
+            imageSrc: image && (image.currentSrc || image.src),
+            infoUrl: this.config.termsUrl,
+        });
+        this.termsPanel.hidden = !subscribed;
+        this.agreement.hidden = !subscribed;
     }
 
     buildOffers() {
@@ -90,22 +161,30 @@ export default class SubscriptionOffers {
 
     describe(offer, oneTimePrice) {
         const parts = [offer.label];
-        const renewal = offer.renewalPrice !== undefined ? offer.renewalPrice : offer.price;
-        const months = offer.renewalMonths;
+        const terms = this.termsFor(offer);
 
-        if (offer.initialPrice !== undefined) {
-            parts.push(`First ${offer.initialMonths} months for ${this.formatter.format(offer.initialPrice)}, then pay ${this.formatter.format(renewal)} every ${months} months`);
+        if (terms.isIntro) {
+            parts.push(terms.headline);
         } else {
+            const renewal = offer.renewalPrice !== undefined ? offer.renewalPrice : offer.price;
+            const months = offer.renewalMonths;
             const monthly = renewal / months;
             const oneTimeMonthly = oneTimePrice / ONE_TIME_MONTHS;
 
             if (oneTimePrice && oneTimeMonthly > monthly) {
                 parts.push(`SAVE ${Math.round((1 - monthly / oneTimeMonthly) * 100)}%`);
             }
-            parts.push(`Pay ${this.formatter.format(renewal)} every ${months} months`);
+            parts.push(terms.headline);
         }
 
         return parts.join(' \u00B7 ');
+    }
+
+    termsFor(offer) {
+        return buildTerms(offer, {
+            formatMoney: value => this.formatter.format(value),
+            formatDate: date => new Intl.DateTimeFormat(document.documentElement.lang || undefined, { dateStyle: 'long' }).format(date),
+        });
     }
 
     renderSubscribeCard(root, offers, oneTime) {
@@ -226,5 +305,7 @@ export default class SubscriptionOffers {
             entry.card.root.classList.toggle('is-selected', active);
             if (active) entry.show(value);
         });
+
+        this.updateTermsPanel(value);
     }
 }
